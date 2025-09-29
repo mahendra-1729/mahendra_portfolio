@@ -1,4 +1,92 @@
 
-       
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            padding: 50px;
+            background-color: rgba(255,255,255,0.6);
+        }
+        h1 {
+            font-size: 50px;
+            margin: 0;
+            color: #ff4081;
+        }
+        p {
+            font-size: 20px;
+            margin: 20px 0;
+        }
+        .cake {
+            margin: 30px 0;
+        }
+        .gallery img {
+            width: 200px;
+            margin: 10px;
+            border-radius: 15px;
+            transition: transform 0.3s;
+        }
+        .gallery img:hover {
+            transform: scale(1.1);
+        }
+        footer {
+            margin-top: 50px;
+            padding: 20px;
+            background-color: rgba(255,255,255,0.6);
+        }
+        .play-button {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #ff4081;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🎉 this is mahendra 🎉</h1>
+        <p>Wishing you lots of happiness, love, and success on your special day!</p>
+    </header>
+
+    <div class="cake">
+        <img src="https://up.yimg.com/ib/th/id/OIP.MCLzVoExgXPyNi_V5gb1AwHaE7?pid=Api&rs=1&c=1&qlt=95&w=141&h=94" alt="Birthday Cake" width="150">
+    </div>
+
+    <button class="play-button" onclick="playSong()">🎵 Play Birthday Song</button>
+    <audio id="birthdaySong" src="C:\Users\mahen\Downloads\song1.mp3.mp3"></audio>
+
+    <section class="gallery">
+        <h2>Memorable Moments</h2>
+        <img src="https://via.placeholder.com/200" alt="Memory 1">
+        <img src="https://via.placeholder.com/200" alt="Memory 2">
+        <img src="https://via.placeholder.com/200" alt="Memory 3">
+    </section>
+
+    <footer>
+        <p>Made with ❤️ by [Your Name]</p>
+    </footer>
+
+    <script>
+        function playSong() {
+            const song = document.getElementById("birthdaySong");
+            song.play();
+        }
+    </script>
+</body>
+</html>
    
   

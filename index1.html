@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heart Photo Collage</title>
+<style>
+  body {
+    background-color: #f0e6d6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+  }
+  .heart {
+    position: relative;
+    width: 600px;
+    height: 600px;
+  }
+  .heart img {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    transition: transform 0.3s;
+  }
+  .heart img:hover {
+    transform: scale(1.1);
+    z-index: 10;
+  }
+  .light {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: yellow;
+    border-radius: 50%;
+    box-shadow: 0 0 10px yellow, 0 0 20px yellow;
+    animation: blink 1.5s infinite;
+  }
+  @keyframes blink {
+    0%, 50%, 100% { opacity: 1; }
+    25%, 75% { opacity: 0.3; }
+  }
+</style>
+</head>
+<body>
+
+<div class="heart" id="heart"></div>
+
+<script>
+const heart = document.getElementById('heart');
+
+// Example images (replace these URLs with your own)
+const images = [
+  "https://tse4.mm.bing.net/th/id/OIP.qc6WtDdRdH-UAlTEhWK5NgHaF1?pid=Api&P=0&h=180",
+    "https://tse3.mm.bing.net/th/id/OIP.Pqy0VnGfg80Dmn1TmD1vlwHaEK?pid=Api&P=0&h=180" ,
+   "https://tse1.mm.bing.net/th/id/OIP.bPxcCkBhkKIkadgeobKNvgHaEK?pid=Api&P=0&h=180" ,
+    "https://tse2.mm.bing.net/th/id/OIP.2QYUJe9-0R3TKov3ONLXWAHaJQ?pid=Api&P=0&h=180" ,
+    "https://tse2.mm.bing.net/th/id/OIP.KcSNflVNNno-eVZsuOrgCQHaIA?pid=Api&P=0&h=180" ,
+    "https://tse3.mm.bing.net/th/id/OIP.MEvJ32BDB4Ej9I5kNzwv-QHaEK?pid=Api&P=0&h=180" ,
+    "https://tse2.mm.bing.net/th/id/OIP.lO6swmsUCKRYoySX-6VrMgAAAA?pid=Api&P=0&h=180" ,
+    "https://tse3.mm.bing.net/th/id/OIP.ZbOXkBuIznkJ8fkZWAP9HgHaJQ?pid=Api&P=0&h=180" ,
+    "https://tse1.mm.bing.net/th/id/OIP.5oloEedaI5Buaj412Y3PBQAAAA?pid=Api&P=0&h=180" ,
+    "https://tse4.mm.bing.net/th/id/OIP.Fwe0VEgHnrWw0EB5ZtF93wHaEn?pid=Api&P=0&h=180" ,
+    "https://tse3.mm.bing.net/th/id/OIP.qyqAg0_7epbnM5gqgknErQHaJQ?pid=Api&P=0&h=180" ,
+   "https://tse2.mm.bing.net/th?id=OIF.sIskfZ7rZsb5uTGS%2benx0w&pid=Api&P=0&h=180",
+   "https://tse4.mm.bing.net/th/id/OIP.qc6WtDdRdH-UAlTEhWK5NgHaF1?pid=Api&P=0&h=180",
+    "https://tse3.mm.bing.net/th/id/OIP.Pqy0VnGfg80Dmn1TmD1vlwHaEK?pid=Api&P=0&h=180" ,
+   "https://tse1.mm.bing.net/th/id/OIP.bPxcCkBhkKIkadgeobKNvgHaEK?pid=Api&P=0&h=180" ,
+    "https://tse2.mm.bing.net/th/id/OIP.2QYUJe9-0R3TKov3ONLXWAHaJQ?pid=Api&P=0&h=180" ,
+    "https://tse2.mm.bing.net/th/id/OIP.KcSNflVNNno-eVZsuOrgCQHaIA?pid=Api&P=0&h=180" ,
+    "https://tse3.mm.bing.net/th/id/OIP.MEvJ32BDB4Ej9I5kNzwv-QHaEK?pid=Api&P=0&h=180" ,
+    "https://tse2.mm.bing.net/th/id/OIP.lO6swmsUCKRYoySX-6VrMgAAAA?pid=Api&P=0&h=180" ,
+    "https://tse3.mm.bing.net/th/id/OIP.ZbOXkBuIznkJ8fkZWAP9HgHaJQ?pid=Api&P=0&h=180" ,
+    "https://tse1.mm.bing.net/th/id/OIP.5oloEedaI5Buaj412Y3PBQAAAA?pid=Api&P=0&h=180" ,
+    "https://tse4.mm.bing.net/th/id/OIP.Fwe0VEgHnrWw0EB5ZtF93wHaEn?pid=Api&P=0&h=180" ,
+    "https://tse3.mm.bing.net/th/id/OIP.qyqAg0_7epbnM5gqgknErQHaJQ?pid=Api&P=0&h=180" ,
+   "https://tse2.mm.bing.net/th?id=OIF.sIskfZ7rZsb5uTGS%2benx0w&pid=Api&P=0&h=180",
+   
+];
+
+// Positions for heart shape (x, y)
+const positions = [
+  [250,0],[150,50],[350,50],            // row 1
+  [50,100],[250,100],[450,100],         // row 2
+  [0,150],[200,150],[400,150],[600,150],// row 3
+  [50,200],[250,200],[450,200],         // row 4
+  [100,250],[300,250],[500,250],        // row 5
+  [150,300],[350,300],                   // row 6
+  [300,350],                             // row 7
+  [250,400],[300,450]    
+];
+
+images.forEach((src, i) => {
+  const img = document.createElement('img');
+  img.src = src;
+  img.style.left = positions[i][0] + 'px';
+  img.style.top = positions[i][1] + 'px';
+  heart.appendChild(img);
+
+  // Add lights
+   const light = document.createElement('div');
+  light.className = 'light';
+  light.style.left = positions[i][0] + 85 + 'px'; // 100 - 15 = 85
+  light.style.top = positions[i][1] + 'px';
+  heart.appendChild(light);
+});
+</script>
+
+</body>
+</html>
